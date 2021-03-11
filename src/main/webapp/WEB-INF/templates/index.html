@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<h2>Spring</h2>
+<br/>
+
+<table cellspacing="2" border="1" cellpadding="5" width="600">
+    <thead>
+    <tr>
+        <th> Id </th>
+        <th> Product </th>
+        <th> Price </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${products.empty}">
+        <td colspan="2"> No Books Available </td>
+    </tr>
+    <tr th:each="product : ${products}">
+        <td><span th:text="${product.id}"> Id </span></td>
+        <td><span th:text="${product.name}"> Product </span></td>
+        <td><span th:text="${product.price}"> Price </span></td>
+    </tr>
+    </tbody>
+</table>
+
+<br/>
+<form action="/MVC/json" method="get">
+    <input type="submit" value="json" width="100"/>
+</form>
+<br/>
+<form action="/MVC/xml" method="get">
+    <input type="submit" value="xml" width="100"/>
+</form>
+</body>
+</html>
