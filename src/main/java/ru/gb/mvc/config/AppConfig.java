@@ -18,9 +18,7 @@ import ru.gb.mvc.market.ProductRepositoryImpl;
 
 import java.util.List;
 
-@EnableWebMvc
 @Configuration
-@ComponentScan("ru.gb.mvc")
 public class AppConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {

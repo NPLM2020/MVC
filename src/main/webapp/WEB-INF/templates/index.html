@@ -13,9 +13,6 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:if="${products.empty}">
-        <td colspan="2"> No Books Available </td>
-    </tr>
     <tr th:each="product : ${products}">
         <td><span th:text="${product.id}"> Id </span></td>
         <td><span th:text="${product.name}"> Product </span></td>
@@ -25,11 +22,11 @@
 </table>
 
 <br/>
-<form action="/MVC/json" method="get">
+<form action="/json" method="get">
     <input type="submit" value="json" width="100"/>
 </form>
 <br/>
-<form action="/MVC/xml" method="get">
+<form action="/xml" method="get">
     <input type="submit" value="xml" width="100"/>
 </form>
 </body>
