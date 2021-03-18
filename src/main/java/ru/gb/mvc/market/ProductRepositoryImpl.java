@@ -20,8 +20,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public Product getProductById(int id) {
-        Optional<Product> product = productList.stream().filter(p -> p.getId() == id).findFirst();
-        return product.orElse(null);
+    public Optional<Product> getProductById(int id) {
+        return productList.stream().filter(p -> p.getId() == id).findFirst();
     }
 }

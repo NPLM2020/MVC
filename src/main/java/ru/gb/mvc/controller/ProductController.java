@@ -11,7 +11,7 @@ public class ProductController {
 
     @RequestMapping(value="/json")
     public String getJson(Model model) {
-        Product product = new Product(1, "testJson", 35.2f);
+        Product product = new Product();
         String message;
         try {
             message = ObjectHelper.toJson(product);
@@ -24,7 +24,7 @@ public class ProductController {
 
     @RequestMapping(value="/xml")
     public String getXml(Model model) {
-        Product product = new Product(2, "testXml", 35.2f);
+        Product product = new Product();
         String message;
         try {
             message = ObjectHelper.toXml(product);

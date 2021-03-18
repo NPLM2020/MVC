@@ -1,17 +1,43 @@
 package ru.gb.mvc.domain;
 
-public class Product {
-    private final int id;
-    private final String name;
-    private final float price;
+import javax.persistence.*;
 
-    public Product(int id, String name, float price) {
-        this.id = id;
+@Entity
+@Table(name = "products")
+public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private long id;
+
+    @Column(name = "name", length = 50, nullable = false)
+    private String name;
+
+    @Column(name = "price", nullable = false)
+    private float price;
+
+    public Product(String name, float price) {
         this.name = name;
         this.price = price;
     }
 
-    public int getId() {
+    public Product() {
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public long getId() {
         return id;
     }
 

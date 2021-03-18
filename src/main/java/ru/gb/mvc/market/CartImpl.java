@@ -5,6 +5,7 @@ import ru.gb.mvc.domain.Product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class CartImpl implements Cart{
@@ -19,13 +20,13 @@ public class CartImpl implements Cart{
 
     @Override
     public void addProduct(int id) {
-        products.add(productRepository.getProductById(id));
+        products.add(productRepository.getProductById(id).get());
     }
 
     @Override
     public void deleteProduct(int id) {
-        Product product = productRepository.getProductById(id);
-        if (product != null) {
+        Optional<Product> product = productRepository.getProductById(id);
+        if (product.isPresent()) {
             products.remove(product);
         }
     }
