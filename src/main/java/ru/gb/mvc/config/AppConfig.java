@@ -51,11 +51,11 @@ public class AppConfig implements WebMvcConfigurer {
     @Bean
     public List<Product> productList() {
         return List.of(
-                new Product(1, "Gold", 999),
-                new Product(2, "Silver", 888),
-                new Product(3, "Bronze", 777),
-                new Product(4, "Wood", 666),
-                new Product(5, "Paper", 555)
+                new Product("Gold", 999),
+                new Product("Silver", 888),
+                new Product("Bronze", 777),
+                new Product("Wood", 666),
+                new Product("Paper", 555)
         );
     }
 
