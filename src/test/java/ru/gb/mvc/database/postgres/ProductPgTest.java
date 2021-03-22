@@ -1,6 +1,9 @@
-package ru.gb.mvc.database;
+package ru.gb.mvc.database.postgres;
 
 import org.junit.jupiter.api.*;
+import ru.gb.mvc.database.CommonEntityManager;
+import ru.gb.mvc.database.FindInDatabaseException;
+import ru.gb.mvc.database.postgres.ProductPg;
 import ru.gb.mvc.domain.Product;
 
 import java.util.List;
@@ -9,7 +12,7 @@ import java.util.List;
 class ProductPgTest {
 
     private static long id;
-    private ProductPg productPg = new ProductPg();
+    private ProductPg productPg = new ProductPg(new CommonEntityManager().getEm());
 
     @Test
     @Order(2)
@@ -43,7 +46,6 @@ class ProductPgTest {
     @Order(1)
     void saveTest() {
         Product product = new Product("testProduct", 999);
-        ProductPg productPg = new ProductPg();
         Product newProduct = productPg.saveOrUpdate(product);
         Assertions.assertEquals(newProduct.getName(), "testProduct");
         id = newProduct.getId();
@@ -52,7 +54,6 @@ class ProductPgTest {
     @Test
     @Order(3)
     void updateTest() {
-        ProductPg productPg = new ProductPg();
         Product newProduct = productPg.findById(id);
         newProduct.setName("testProductUpdated");
         Assertions.assertEquals(productPg.saveOrUpdate(newProduct).getName(), newProduct.getName());
