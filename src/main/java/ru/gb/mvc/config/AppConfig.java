@@ -1,21 +1,21 @@
 package ru.gb.mvc.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import ru.gb.mvc.database.CommonEntityManager;
 import ru.gb.mvc.domain.Product;
 import ru.gb.mvc.market.Cart;
 import ru.gb.mvc.market.CartImpl;
 import ru.gb.mvc.market.ProductRepository;
 import ru.gb.mvc.market.ProductRepositoryImpl;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
 @Configuration
@@ -68,6 +68,11 @@ public class AppConfig implements WebMvcConfigurer {
     @Bean
     public ProductRepository productRepository(List<Product> productList) {
         return new ProductRepositoryImpl(productList);
+    }
+
+    @Bean
+    public EntityManager entityManager() {
+        return new CommonEntityManager().getEm();
     }
 
 }

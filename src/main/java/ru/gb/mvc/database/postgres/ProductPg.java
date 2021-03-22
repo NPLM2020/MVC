@@ -1,25 +1,22 @@
-package ru.gb.mvc.database;
+package ru.gb.mvc.database.postgres;
 
-import org.hibernate.cfg.Configuration;
+import org.springframework.stereotype.Component;
+import ru.gb.mvc.database.FindInDatabaseException;
+import ru.gb.mvc.database.ProductDAO;
 import ru.gb.mvc.domain.Product;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.List;
 
-
+@Component
 public class ProductPg implements ProductDAO {
 
-    private EntityManager em;
+    private final EntityManager em;
 
-
-    public ProductPg() {
-        EntityManagerFactory factory = new Configuration()
-                .configure("hibernate.xml")
-                .buildSessionFactory();
-        em = factory.createEntityManager();
+    public ProductPg(EntityManager em) {
+        this.em = em;
     }
 
     @Override
@@ -65,7 +62,6 @@ public class ProductPg implements ProductDAO {
             em.merge(product);
         } catch (FindInDatabaseException exception) {
             em.persist(product);
-            em.flush();
         } finally {
             em.getTransaction().commit();
         }
