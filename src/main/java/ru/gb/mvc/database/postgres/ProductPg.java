@@ -10,8 +10,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.List;
 
-@Component
-public class ProductPg implements ProductDAO {
+//@Component
+public class ProductPg /*implements ProductDAO*/ {
 
     private final EntityManager em;
 
@@ -19,7 +19,7 @@ public class ProductPg implements ProductDAO {
         this.em = em;
     }
 
-    @Override
+    //@Override
     public Product findById(long id) {
         Query query = em.createQuery("select p from Product p where p.id = :id");
         query.setParameter("id", id);
@@ -33,7 +33,7 @@ public class ProductPg implements ProductDAO {
         }
     }
 
-    @Override
+    //@Override
     public List<Product> findAll() {
         Query query = em.createQuery("select p from Product p");
         List<Product> products;
@@ -45,7 +45,7 @@ public class ProductPg implements ProductDAO {
         }
     }
 
-    @Override
+    //@Override
     public void deleteById(long id) {
         em.getTransaction().begin();
         Query query = em.createQuery("delete from Product p where p.id = :id");
@@ -54,7 +54,7 @@ public class ProductPg implements ProductDAO {
         em.getTransaction().commit();
     }
 
-    @Override
+    //@Override
     public Product saveOrUpdate(Product product) {
         em.getTransaction().begin();
         try {

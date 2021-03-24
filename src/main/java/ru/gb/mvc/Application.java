@@ -1,11 +1,20 @@
 package ru.gb.mvc;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import ru.gb.mvc.controller.ProductRestController;
 
 @SpringBootApplication
+@EnableJpaRepositories
 public class Application {
+
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+
     }
+
+
 }

@@ -1,18 +1,17 @@
 package ru.gb.mvc.database;
 
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import ru.gb.mvc.domain.Product;
 
 import java.util.List;
+import java.util.Optional;
 
-/**
- * Создайте класс ProductDao и реализуйте в нем логику выполнения CRUD-операций над сущностью Product
- * (Product findById(Long id)(используя jpql), List"Product" findAll()(используя jpql), void deleteById(Long id),
- * Product saveOrUpdate(Product product))
- */
-public interface ProductDAO {
-    Product findById(long id) throws FindInDatabaseException;
-    List<Product> findAll();
-    void deleteById(long id);
-    Product saveOrUpdate(Product product);
+
+@Repository
+public interface ProductDAO extends JpaRepository<Product, Long> {
+    Optional<List<Product>> findByPriceGreaterThan(float minPrice);
+    Optional<List<Product>> findByPriceLessThan(float maxPrice);
+    Optional<List<Product>> findByPriceBetween(float minPrice, float maxPrice);
 }
