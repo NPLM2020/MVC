@@ -26,10 +26,10 @@ public class ProductRestController {
         return productDAO.findAll().toString();
     }
 
-    @PostMapping("/products")
+    /*@PostMapping("/products")
     public void saveProduct(Product product) {
         productDAO.save(product);
-    }
+    }*/
 
     @GetMapping("/products/delete/{id}")
     public void deleteProduct(@PathVariable long id) {

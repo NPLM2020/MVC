@@ -1,25 +1,53 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<style>
+    .horizontal {
+        margin: 0;
+        padding: 0;
+    }
+
+    .horizontal li {
+        display: inline-block;
+    }
+
+</style>
 <body>
 <h2>Spring</h2>
 <br/>
-
+<a th:href="@{/add_product}">Add product</a>
+<br/>
 <table cellspacing="2" border="1" cellpadding="5" width="600">
     <thead>
     <tr>
-        <th> Id </th>
-        <th> Product </th>
-        <th> Price </th>
+        <th> Id</th>
+        <th> Product</th>
+        <th> Price</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="product : ${products}">
+    <tr th:each="product : ${products.content}">
         <td><span th:text="${product.id}"> Id </span></td>
         <td><span th:text="${product.name}"> Product </span></td>
         <td><span th:text="${product.price}"> Price </span></td>
+        <td align="center" width="auto">
+            <form action="#" th:action="@{/products/{id}/delete(id=${product.id})}" method="get">
+                <button th:id="'delete_product_' + ${product.id}" type="submit">
+                    <i>Delete</i>
+                </button>
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>
+
+<ul th:if="${products.totalPages > 0}" class="horizontal">
+    <li class="horizontal li"
+        th:each="pageNumber : ${pageNumbers}">
+        <a th:href="@{/(size=${products.size}, page=${pageNumber})}"
+           th:text=${pageNumber}
+           th:class="${pageNumber==products.number + 1} ? active"></a>
+    </li>
+</ul>
 
 <br/>
 <form action="/json" method="get">
