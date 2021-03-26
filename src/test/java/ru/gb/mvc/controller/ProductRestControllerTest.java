@@ -24,7 +24,7 @@ class ProductRestControllerTest {
     @Test
     void saveProduct() {
         Product product = new Product("SpringJPA", 80000f);
-        productRestController.saveProduct(product);
+        //productRestController.saveProduct(product);
     }
 
     @Test
