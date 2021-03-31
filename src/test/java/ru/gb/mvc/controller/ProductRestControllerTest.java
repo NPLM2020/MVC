@@ -18,7 +18,7 @@ class ProductRestControllerTest {
 
     @Test
     void getProducts() {
-        System.out.println(productRestController.getProducts());
+        System.out.println(productRestController.getProducts(null, null));
     }
 
     @Test
@@ -34,16 +34,16 @@ class ProductRestControllerTest {
 
     @Test
     void getProductsByMinPrice() {
-        System.out.println(productRestController.getProductsByMinPrice(70000f));
+        System.out.println(productRestController.getProductsByMinPrice(null, null,70000f));
     }
 
     @Test
     void getProductsByMaxPrice() {
-        System.out.println(productRestController.getProductsByMaxPrice(80000f));
+        System.out.println(productRestController.getProductsByMaxPrice(null, null,80000f));
     }
 
     @Test
     void getProductsByPriceBetween() {
-        System.out.println(productRestController.getProductsByPriceBetween(999f, 80000f));
+        System.out.println(productRestController.getProductsByPriceBetween(null, null, 999f, 80000f));
     }
 }
