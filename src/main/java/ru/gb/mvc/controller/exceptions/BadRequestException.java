@@ -3,10 +3,9 @@ package ru.gb.mvc.controller.exceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(value = HttpStatus.NOT_FOUND)
-public class EntityNotFoundException extends RuntimeException {
-
-    public EntityNotFoundException(String message) {
+@ResponseStatus(value = HttpStatus.BAD_REQUEST)
+public class BadRequestException extends RuntimeException{
+    public BadRequestException(String message) {
         super(message);
     }
 }
