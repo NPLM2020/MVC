@@ -8,23 +8,30 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
-import ru.gb.mvc.controller.ProductRestController;
-import ru.gb.mvc.database.CommonEntityManager;
-import ru.gb.mvc.database.ProductDAO;
 import ru.gb.mvc.domain.Product;
 import ru.gb.mvc.market.Cart;
 import ru.gb.mvc.market.CartImpl;
 import ru.gb.mvc.market.ProductRepository;
 import ru.gb.mvc.market.ProductRepositoryImpl;
 
-import javax.persistence.EntityManager;
+import java.util.HashMap;
 import java.util.List;
 
 @Configuration
 public class AppConfig implements WebMvcConfigurer {
+
+    private HashMap<Long, List<Product>> cartMap;
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+    }
+
+    @Bean
+    public HashMap<Long, List<Product>> cartsRepository() {
+        if (cartMap == null)
+            cartMap = new HashMap<>();
+        return cartMap;
     }
 
     @Bean
@@ -72,14 +79,6 @@ public class AppConfig implements WebMvcConfigurer {
         return new ProductRepositoryImpl(productList);
     }
 
-   /* @Bean
-    public EntityManager entityManager() {
-        return new CommonEntityManager().getEm();
-    }
 
-    /*@Bean
-    public ProductRestController productRestController(ProductDAO productDAO) {
-        return new ProductRestController(productDAO);
-    }*/
 
 }

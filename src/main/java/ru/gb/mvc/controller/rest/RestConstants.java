@@ -1,4 +1,4 @@
-package ru.gb.mvc.controller;
+package ru.gb.mvc.controller.rest;
 
 public final class RestConstants {
     private RestConstants() {}
