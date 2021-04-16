@@ -18,7 +18,26 @@ public class User {
     private float lastName;
 
     @Column(name = "email", length = 50, unique = true)
-    private float email;
+    private String email;
+
+    @Column(name = "password", length = 100)
+    private String password;
+
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 
     public User() {
     }
@@ -47,11 +66,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public float getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(float email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
